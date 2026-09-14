@@ -1,10 +1,11 @@
-package com.gustavo.sistemaDeReservas;
+package com.gustavo.sistemaDeReservas.Paciente;
 
+import com.gustavo.sistemaDeReservas.Medico.MedicoModel;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_Usuario")
-public class UsuarioModel {
+@Table(name = "tb_Paciente")
+public class PacienteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +16,11 @@ public class UsuarioModel {
     private int idade;
     private String telefone;
 
-    public UsuarioModel() {
+
+    public PacienteModel() {
     }
 
-    public UsuarioModel(String nome, String email, int idade, String telefone) {
+    public PacienteModel(String nome, String email, int idade, String telefone) {
         this.nome = nome;
         this.email = email;
         this.idade = idade;

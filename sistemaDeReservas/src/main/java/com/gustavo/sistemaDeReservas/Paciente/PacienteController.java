@@ -1,4 +1,4 @@
-package com.gustavo.sistemaDeReservas;
+package com.gustavo.sistemaDeReservas.Paciente;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
-public class UsuarioController {
+public class PacienteController {
 
     @GetMapping("/boasVindas")
     public String boasVindas() {
