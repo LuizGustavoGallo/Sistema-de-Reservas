@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class PacienteModel {
 
     @Id
@@ -20,4 +19,10 @@ public class PacienteModel {
     private int idade;
     private String telefone;
 
+    public PacienteModel(String nome, String email, int idade, String telefone) {
+        this.nome = nome;
+        this.email = email;
+        this.idade = idade;
+        this.telefone = telefone;
+    }
 }

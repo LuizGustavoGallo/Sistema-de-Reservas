@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class MedicoModel {
 
     @Id
@@ -19,5 +18,8 @@ public class MedicoModel {
 
     private String especialidade;
 
-
+    public MedicoModel(String nome, String especialidade) {
+        this.nome = nome;
+        this.especialidade = especialidade;
+    }
 }

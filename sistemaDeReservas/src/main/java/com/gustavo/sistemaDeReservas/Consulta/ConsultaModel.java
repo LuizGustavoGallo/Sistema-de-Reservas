@@ -13,7 +13,6 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ConsultaModel {
 
     @Id
@@ -35,5 +34,12 @@ public class ConsultaModel {
     @JoinColumn(name = "medico_id")
     private MedicoModel medico;
 
-
+    public ConsultaModel(StatusConsulta status, LocalDate data, LocalTime horaInicio, LocalTime horaFim, PacienteModel paciente, MedicoModel medico) {
+        this.status = status;
+        this.data = data;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
+        this.paciente = paciente;
+        this.medico = medico;
+    }
 }
