@@ -3,16 +3,15 @@ package com.gustavo.sistemaDeReservas.Consulta;
 import com.gustavo.sistemaDeReservas.Medico.MedicoModel;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "tb_Consulta")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConsultaModel {
