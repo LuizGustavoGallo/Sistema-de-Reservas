@@ -15,8 +15,12 @@ public class PacienteModel {
     private Long id;
 
     private String nome;
+
+    @Column(unique = true)
     private String email;
     private int idade;
+
+    @Column(unique = true)
     private String telefone;
 
     public PacienteModel(String nome, String email, int idade, String telefone) {
