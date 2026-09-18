@@ -16,4 +16,8 @@ public class MedicoService {
     public List<MedicoModel> buscaPorEspecialidade(String especialidade){
         return medicoRepository.findByEspecialidade(especialidade);
     }
+
+    public MedicoModel criarMedico(MedicoModel novoMedico){
+        return medicoRepository.save(novoMedico);
+    }
 }
