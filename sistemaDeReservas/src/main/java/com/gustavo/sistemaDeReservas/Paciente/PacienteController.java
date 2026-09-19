@@ -18,4 +18,8 @@ public class PacienteController {
         return pacienteService.criarPaciente(novoPaciente);
     }
 
+    @PostMapping("/login")
+    public PacienteModel login(@RequestParam String email){
+        return pacienteService.login(email);
+    }
 }
