@@ -17,9 +17,11 @@ public class PacienteModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "Nome deve conter apenas letras")
     @NotBlank(message = "Obrigatório informar o nome")
     private String nome;
 
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "Nome deve conter apenas letras")
     @Email(message = "Email inválido")
     @NotBlank(message = "Informe o Email")
     @Column(unique = true)
