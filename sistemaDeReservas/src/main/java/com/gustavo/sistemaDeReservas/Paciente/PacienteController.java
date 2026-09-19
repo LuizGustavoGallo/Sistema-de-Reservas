@@ -1,5 +1,6 @@
 package com.gustavo.sistemaDeReservas.Paciente;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +14,7 @@ public class PacienteController {
     }
 
     @PostMapping
-    public PacienteModel criar(@RequestBody PacienteModel novoPaciente){
+    public PacienteModel criar(@Valid @RequestBody PacienteModel novoPaciente){
         return pacienteService.criarPaciente(novoPaciente);
     }
 
