@@ -1,15 +1,20 @@
 package com.gustavo.sistemaDeReservas.Paciente;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/pacientes")
 public class PacienteController {
 
-    @GetMapping("/boasVindas")
-    public String boasVindas() {
-        return "Minha primeira mensagem";
+    private final PacienteService pacienteService;
+
+    public PacienteController(PacienteService pacienteService) {
+        this.pacienteService = pacienteService;
     }
+
+    @PostMapping
+    public PacienteModel criar(@RequestBody PacienteModel novoPaciente){
+        return pacienteService.criarPaciente(novoPaciente);
+    }
+
 }
