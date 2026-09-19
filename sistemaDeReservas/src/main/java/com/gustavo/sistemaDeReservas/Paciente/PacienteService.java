@@ -10,4 +10,8 @@ public class PacienteService {
     public PacienteService(PacienteRepository pacienteRepository){
         this.pacienteRepository = pacienteRepository;
     }
+
+    public PacienteModel criarPaciente(PacienteModel novoPaciente){
+        return pacienteRepository.save(novoPaciente);
+    }
 }
