@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 public class ConsultaService {
@@ -36,8 +37,16 @@ public class ConsultaService {
         MedicoModel medico = medicoRepository.findById(medicoId)
                 .orElseThrow(() -> new MedicoNaoEncontradoException("Médico não encontrado"));
 
+        List<ConsultaModel> conflitos = consultaRepository.buscarConflitos(medicoId, data, horaInicio, horaFim);
+
+        if(!conflitos.isEmpty()){
+            throw new ConflitoDeHorarioException("Horario indisponivel para consulta");
+        }
+
         ConsultaModel consulta = new ConsultaModel(StatusConsulta.AGENDADA, data, horaInicio, horaFim, paciente, medico);
 
         return consultaRepository.save(consulta);
     }
+
+
 }
