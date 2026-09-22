@@ -14,4 +14,6 @@ public interface ConsultaRepository extends JpaRepository<ConsultaModel, Long> {
             "AND c.status = 'AGENDADA' " +
             "AND c.horaInicio < :horaFim AND c.horaFim > :horaInicio")
     List<ConsultaModel> buscarConflitos(Long medicoId, LocalDate data, LocalTime horaInicio, LocalTime horaFim);
+
+    List<ConsultaModel> findByMedicoIdAndData(Long medicoId, LocalDate data);
 }

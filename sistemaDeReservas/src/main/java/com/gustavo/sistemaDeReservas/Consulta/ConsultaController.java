@@ -22,8 +22,7 @@ public class ConsultaController {
     public ConsultaModel agendar(@RequestParam Long pacienteId,
                                  @RequestParam Long medicoId,
                                  @RequestParam LocalDate data,
-                                 @RequestParam LocalTime horaInicio,
-                                 @RequestParam LocalTime horaFim){
-        return consultaService.agendar(pacienteId, medicoId, data, horaInicio, horaFim);
+                                 @RequestParam LocalTime horaInicio){
+        return consultaService.agendar(pacienteId, medicoId, data, horaInicio);
     }
 }

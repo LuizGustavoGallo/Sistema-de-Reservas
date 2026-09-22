@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,13 +30,15 @@ public class ConsultaService {
         this.medicoRepository = medicoRepository;
     }
 
-    public ConsultaModel agendar(Long pacienteId, Long medicoId, LocalDate data, LocalTime horaInicio, LocalTime horaFim){
+    public ConsultaModel agendar(Long pacienteId, Long medicoId, LocalDate data, LocalTime horaInicio){
 
         PacienteModel paciente = pacienteRepository.findById(pacienteId)
                 .orElseThrow(() -> new PacienteNaoEncontradoException("Paciente não encontrado"));
 
         MedicoModel medico = medicoRepository.findById(medicoId)
                 .orElseThrow(() -> new MedicoNaoEncontradoException("Médico não encontrado"));
+
+        LocalTime horaFim = horaInicio.plusHours(1);
 
         List<ConsultaModel> conflitos = consultaRepository.buscarConflitos(medicoId, data, horaInicio, horaFim);
 
@@ -47,6 +50,29 @@ public class ConsultaService {
 
         return consultaRepository.save(consulta);
     }
+
+    public List<LocalTime> horariosDisponiveis(Long medicoId, LocalDate data){
+
+        List<LocalTime> horariosPossiveis = new ArrayList<>();
+        LocalTime horario = LocalTime.of(8, 0);
+        LocalTime fimExpediente = LocalTime.of(18, 0);
+
+        while (horario.isBefore(fimExpediente)){
+            horariosPossiveis.add(horario);
+            horario = horario.plusHours(1);
+        }
+
+        List<ConsultaModel> consultasDoDia = consultaRepository.findByMedicoIdAndData(medicoId, data);
+
+        List<LocalTime> horariosOcupados = consultasDoDia.stream()
+                .map(ConsultaModel::getHoraInicio)
+                .toList();
+
+        horariosPossiveis.removeAll(horariosOcupados);
+
+        return horariosPossiveis;
+    }
+
 
 
 }
