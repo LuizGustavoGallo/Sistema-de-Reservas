@@ -6,6 +6,7 @@ import com.gustavo.sistemaDeReservas.Medico.MedicoRepository;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteModel;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteNaoEncontradoException;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteRepository;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -56,9 +57,15 @@ public class ConsultaService {
         List<LocalTime> horariosPossiveis = new ArrayList<>();
         LocalTime horario = LocalTime.of(8, 0);
         LocalTime fimExpediente = LocalTime.of(18, 0);
+        LocalTime inicioAlmoco = LocalTime.of(12, 0);
+        LocalTime fimAlmoco = LocalTime.of(14,0);
 
         while (horario.isBefore(fimExpediente)){
-            horariosPossiveis.add(horario);
+            boolean horarioAlmoco = !horario.isBefore(inicioAlmoco) && horario.isBefore(fimAlmoco);
+
+            if(!horarioAlmoco){
+                horariosPossiveis.add(horario);
+            }
             horario = horario.plusHours(1);
         }
 

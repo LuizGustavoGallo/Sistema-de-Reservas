@@ -1,12 +1,10 @@
 package com.gustavo.sistemaDeReservas.Consulta;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/consultas")
@@ -24,5 +22,10 @@ public class ConsultaController {
                                  @RequestParam LocalDate data,
                                  @RequestParam LocalTime horaInicio){
         return consultaService.agendar(pacienteId, medicoId, data, horaInicio);
+    }
+
+    @GetMapping("/horarios-disponiveis")
+    public List<LocalTime> horariosDisponiveis(@RequestParam Long medicoId, @RequestParam LocalDate data){
+        return consultaService.horariosDisponiveis(medicoId, data);
     }
 }
