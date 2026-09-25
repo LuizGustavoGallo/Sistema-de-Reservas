@@ -17,7 +17,14 @@ public class MedicoService {
         return medicoRepository.findByEspecialidade(especialidade);
     }
 
+    public boolean existeCrm(String crm){
+        return medicoRepository.findByCrm(crm).isPresent();
+    }
+
     public MedicoModel criarMedico(MedicoModel novoMedico){
+        if (existeCrm(novoMedico.getCrm())){
+            throw new CrmDuplicationException("Já existe um médico cadastrado com esse CRM");
+        }
         return medicoRepository.save(novoMedico);
     }
 }

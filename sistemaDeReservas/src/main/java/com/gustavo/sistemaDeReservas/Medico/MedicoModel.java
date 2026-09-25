@@ -24,8 +24,18 @@ public class MedicoModel {
     @NotBlank(message = "Informe sua especialidade.")
     private String especialidade;
 
+    @Pattern(regexp = "^\\d{4,6}-[A-Z]{2}$", message = "CRM inválido. Informe o formato correto de seu CRM.")
+    @NotBlank(message = "Informe o CRM do medico")
+    @Column(unique = true)
+    private String crm;
+
     public MedicoModel(String nome, String especialidade) {
         this.nome = nome;
         this.especialidade = especialidade;
+    }
+
+    public MedicoModel(String nome, String especialidade, String crm) {
+        this(nome, especialidade);
+        this.crm = crm;
     }
 }

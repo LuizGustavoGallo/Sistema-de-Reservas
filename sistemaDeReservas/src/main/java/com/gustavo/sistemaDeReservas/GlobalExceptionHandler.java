@@ -1,6 +1,7 @@
 package com.gustavo.sistemaDeReservas;
 
 import com.gustavo.sistemaDeReservas.Consulta.ConflitoDeHorarioException;
+import com.gustavo.sistemaDeReservas.Medico.CrmDuplicationException;
 import com.gustavo.sistemaDeReservas.Medico.MedicoModel;
 import com.gustavo.sistemaDeReservas.Medico.MedicoNaoEncontradoException;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteNaoEncontradoException;
@@ -24,6 +25,11 @@ public class GlobalExceptionHandler {
 
    @ExceptionHandler(ConflitoDeHorarioException.class)
     public ResponseEntity<String> handleConflitoDeHorario(ConflitoDeHorarioException ex){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+   }
+
+   @ExceptionHandler(CrmDuplicationException.class)
+    public ResponseEntity<String> handleCrmDuplicado(CrmDuplicationException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
    }
 }
