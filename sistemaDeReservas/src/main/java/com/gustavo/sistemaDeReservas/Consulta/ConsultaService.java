@@ -6,7 +6,6 @@ import com.gustavo.sistemaDeReservas.Medico.MedicoRepository;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteModel;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteNaoEncontradoException;
 import com.gustavo.sistemaDeReservas.Paciente.PacienteRepository;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -78,6 +77,14 @@ public class ConsultaService {
         horariosPossiveis.removeAll(horariosOcupados);
 
         return horariosPossiveis;
+    }
+
+    public List<ConsultaModel> listarPorPaciente(Long pacienteId){
+        return consultaRepository.findByPacienteId(pacienteId);
+    }
+
+    public List<ConsultaModel> listarPorMedico(Long medicoId){
+        return consultaRepository.findByMedicoId(medicoId);
     }
 
 

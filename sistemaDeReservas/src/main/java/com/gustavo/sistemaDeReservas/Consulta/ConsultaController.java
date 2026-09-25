@@ -28,4 +28,14 @@ public class ConsultaController {
     public List<LocalTime> horariosDisponiveis(@RequestParam Long medicoId, @RequestParam LocalDate data){
         return consultaService.horariosDisponiveis(medicoId, data);
     }
+
+    @GetMapping("/paciente/{pacienteId}")
+    public List<ConsultaModel> agendasPaciente(@PathVariable Long pacienteId){
+        return consultaService.listarPorPaciente(pacienteId);
+    }
+
+    @GetMapping("/medico/{medicoId}")
+    public List<ConsultaModel> agendasMedico(@PathVariable Long medicoId){
+        return consultaService.listarPorMedico(medicoId);
+    }
 }
