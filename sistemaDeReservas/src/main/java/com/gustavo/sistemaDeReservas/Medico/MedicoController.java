@@ -21,7 +21,11 @@ public class MedicoController {
     }
 
     @PostMapping
-    public MedicoModel novo(@Valid @RequestBody MedicoModel novoMedico){
-        return medicoService.criarMedico(novoMedico);
+    public MedicoModel novo(@Valid @RequestBody MedicoRequestDTO medicoRequestDTO){
+        MedicoModel medico = new MedicoModel(
+                medicoRequestDTO.nome(),
+                medicoRequestDTO.especialidade(),
+                medicoRequestDTO.crm());
+        return medicoService.criarMedico(medico);
     }
 }

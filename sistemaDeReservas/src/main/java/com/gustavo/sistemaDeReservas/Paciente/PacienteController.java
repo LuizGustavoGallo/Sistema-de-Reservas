@@ -14,8 +14,13 @@ public class PacienteController {
     }
 
     @PostMapping
-    public PacienteModel criar(@Valid @RequestBody PacienteModel novoPaciente){
-        return pacienteService.criarPaciente(novoPaciente);
+    public PacienteModel novoPaciente(@Valid @RequestBody PacienteRequestDTO pacienteRequestDTO){
+        PacienteModel paciente = new PacienteModel(
+                pacienteRequestDTO.nome(),
+                pacienteRequestDTO.email(),
+                pacienteRequestDTO.idade(),
+                pacienteRequestDTO.telefone());
+        return pacienteService.criarPaciente(paciente);
     }
 
     @PostMapping("/login")

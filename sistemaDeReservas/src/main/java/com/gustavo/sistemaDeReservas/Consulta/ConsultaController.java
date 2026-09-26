@@ -17,11 +17,13 @@ public class ConsultaController {
     }
 
     @PostMapping
-    public ConsultaModel agendar(@RequestParam Long pacienteId,
-                                 @RequestParam Long medicoId,
-                                 @RequestParam LocalDate data,
-                                 @RequestParam LocalTime horaInicio){
-        return consultaService.agendar(pacienteId, medicoId, data, horaInicio);
+    public ConsultaModel agendar(@RequestBody AgendarConsultaDTO agendarConsultaDTO){
+        return consultaService.agendar(
+                agendarConsultaDTO.pacienteId(),
+                agendarConsultaDTO.medicoId(),
+                agendarConsultaDTO.data(),
+                agendarConsultaDTO.horaInicio()
+        );
     }
 
     @GetMapping("/horarios-disponiveis")

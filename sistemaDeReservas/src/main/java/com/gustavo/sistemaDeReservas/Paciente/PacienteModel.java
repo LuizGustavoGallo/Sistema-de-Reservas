@@ -15,20 +15,13 @@ public class PacienteModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "Nome deve conter apenas letras")
-    @NotBlank(message = "Obrigatório informar o nome")
     private String nome;
 
-    @Email(message = "Email inválido")
-    @NotBlank(message = "Informe o Email")
     @Column(unique = true)
     private String email;
 
-    @Min(value = 0, message = "Idade não pode ser negativa.")
-    @Max(value = 120, message = "Idade inválida.")
     private int idade;
 
-    @Pattern(regexp = "\\d{10,11}", message = "Informe um telefone válido")
     @Column(unique = true)
     private String telefone;
 
